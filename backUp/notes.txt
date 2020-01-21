@@ -1,0 +1,30 @@
+Programming
+
+- Compiler
+- Interpreter
+
+1. General Purpose
+- Web Dev, Software, Game, Data Science...
+2. Interpreted Language
+3. Dynamically Typed Language
+4. Multi-paradigm - Procedural + Object Oriented + Functional
+
+DRY - Donot Repeat Yourself
+
+Loops
+- for
+- while
+
+
+for var in range(start,stop):
+    print(var)
+    print("hello")
+    print("bye")
+print("")
+
+
+
+
+
+
+
