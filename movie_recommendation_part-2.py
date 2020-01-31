@@ -7,7 +7,10 @@ movies = {
     "horror":  ["the nun","saw","insidious","it"]
     }
 
-user = {"avengers","kee","sanju","robot","KGF","bala","golmaal"}
+user_1 = {"avengers","kee","sanju","robot","KGF","bala","golmaal","KGF","batman"}
+user_2 = {"ugly","robot","it","avengers","junglee"}
+
+simMovies = user_1.intersection(user_2)
 
 # Similarity Score => Jaccard Similarity
 simScore = {}
@@ -15,8 +18,8 @@ for key in movies:
     simScore[key]=  0.0
 
 for key in movies:
-    intersection = set(movies[key]).intersection(user)
-    union = set(movies[key]).union(user)
+    intersection = set(movies[key]).intersection(simMovies)
+    union = set(movies[key]).union(simMovies)
     sim = len(intersection) / len(union)
     simScore[key] = round(sim * 100,2)
 
@@ -25,5 +28,8 @@ def show(x):
 
 print(simScore)
 cat = max(simScore.items(), key = show)
-recommended = set(movies[cat[0]]) - user
-print("Recommended Movies are",recommended)
+rec = user_2.intersection(movies[cat[0]]) - user_1.intersection(movies[cat[0]])
+print("Recommended movie for user_1",rec)
+
+rec = user_1.intersection(movies[cat[0]]) - user_2.intersection(movies[cat[0]])
+print("Recommended movie for user_2",rec)
