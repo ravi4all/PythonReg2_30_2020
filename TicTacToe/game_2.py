@@ -18,11 +18,23 @@ def gameBoard():
                 positions[3],positions[4],positions[5],
                 positions[6],positions[7],positions[8]))
 
+def checkWinner(pos,ch):
+    for i in range(len(combinations)):
+        if pos in combinations[i]:
+            index = combinations[i].index(pos)
+            combinations[i][index] = ch
+
+    for i in range(len(combinations)):
+        if combinations[i][0] == ch and combinations[i][1] == ch and combinations[i][2] == ch:
+            return "win"
+
 def userMoves(ch):
     pos = int(input("Enter the position : "))
     positions[pos - 1] = ch
     occupied.append(pos - 1)
     gameBoard()
+    win = checkWinner(pos - 1,ch)
+    return win
 
 def cpuMoves(cpu_ch):
     while True:
@@ -38,15 +50,8 @@ def cpuMoves(cpu_ch):
         else:
             break
     gameBoard()
-
-def checkWinner(pos,ch):
-    for i in range(len(combinations)):
-        if pos in combinations[i]:
-            index = combinations[i].index(pos)
-            combinations[i][index] = ch
-
-    for i in range(len(combinations)):
-        pass
+    win = checkWinner(cpu_pos,cpu_ch)
+    return win
 
 def main():
     print("Welcome to Tic Tac Toe".center(40,"*"))
@@ -57,9 +62,14 @@ def main():
         cpu_ch = 0
     else: cpu_ch = "X"
     while True:
-        userMoves(ch)
-        checkWinner()
-        cpuMoves(cpu_ch)
-        checkWinner()
+        result = userMoves(ch)
+        if result == "win":
+            print("User win")
+            break
+
+        result = cpuMoves(cpu_ch)
+        if result == "win":
+            print("CPU Win")
+            break
 
 main()
