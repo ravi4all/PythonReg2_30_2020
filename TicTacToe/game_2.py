@@ -24,6 +24,8 @@ def checkWinner(pos,ch):
             index = combinations[i].index(pos)
             combinations[i][index] = ch
 
+    print(combinations)
+
     for i in range(len(combinations)):
         if combinations[i][0] == ch and combinations[i][1] == ch and combinations[i][2] == ch:
             return "win"
@@ -33,7 +35,7 @@ def userMoves(ch):
     positions[pos - 1] = ch
     occupied.append(pos - 1)
     gameBoard()
-    win = checkWinner(pos - 1,ch)
+    win = checkWinner(pos,ch)
     return win
 
 def cpuMoves(cpu_ch):
@@ -50,7 +52,7 @@ def cpuMoves(cpu_ch):
         else:
             break
     gameBoard()
-    win = checkWinner(cpu_pos,cpu_ch)
+    win = checkWinner(cpu_pos+1,cpu_ch)
     return win
 
 def main():
@@ -58,7 +60,7 @@ def main():
     gameBoard()
     ch = input("Please Enter a choice : X or 0 : ")
     print("You have picked :",ch)
-    if ch == "X":
+    if ch == "X" or ch == "x":
         cpu_ch = 0
     else: cpu_ch = "X"
     while True:
