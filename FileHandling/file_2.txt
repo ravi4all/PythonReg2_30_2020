@@ -1,0 +1,2 @@
+Hello this is python file handling
+Python is used for Data Science
